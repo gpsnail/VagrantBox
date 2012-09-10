@@ -30,7 +30,7 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  # config.vm.forward_port 80, 8080
+  config.vm.forward_port 80, 8888
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
@@ -73,6 +73,15 @@ Vagrant::Config.run do |config|
      chef.add_recipe "apache2"
      chef.add_recipe "php"
      chef.add_recipe "php::package"
+     chef.add_recipe "php::module_mysql"
+     chef.add_recipe "php::module_gd"
+     chef.add_recipe "php::module_fpdf"
+     chef.add_recipe "php::module_curl"
+     chef.add_recipe "appache2::mod_rewrite"
+     chef.add_recipe "php::module_pgsql"
+
+
+
      chef.add_recipe "apache2::mod_php5"
      chef.add_recipe "mongodb::10gen_repo"
      chef.add_recipe "postgresql"
