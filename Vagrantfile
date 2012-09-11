@@ -77,7 +77,7 @@ Vagrant::Config.run do |config|
      chef.add_recipe "php::module_gd"
      chef.add_recipe "php::module_fpdf"
      chef.add_recipe "php::module_curl"
-     chef.add_recipe "appache2::mod_rewrite"
+     chef.add_recipe "apache2::mod_rewrite"
      chef.add_recipe "php::module_pgsql"
 
 
