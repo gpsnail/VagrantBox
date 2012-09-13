@@ -79,7 +79,8 @@ Vagrant::Config.run do |config|
      chef.add_recipe "php::module_curl"
      chef.add_recipe "apache2::mod_rewrite"
      chef.add_recipe "php::module_pgsql"
-
+     chef.add_recipe "imagemagick"
+     chef.add_recipe "imagemagick::devel"
 
 
      chef.add_recipe "apache2::mod_php5"
