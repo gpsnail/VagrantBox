@@ -1,4 +1,4 @@
--- Vagrant File & Chef file for Ubuntu Box
+    Vagrant File & Chef file for Ubuntu Box
 
 - Install a Standard Web stack (Apache, PHP, MySQL)
 - Install Postgres, Mongodb
