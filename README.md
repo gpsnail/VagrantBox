@@ -5,3 +5,5 @@ Vagrant File & Chef file for Ubuntu Box
 - Imagemagick
 - NodeJS
 - RVM, Ruby 1.9.3 & Rails stack
+
+Prerequisite gem : Vagrant, librarian
