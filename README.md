@@ -6,4 +6,4 @@ Vagrant File & Chef file for Ubuntu Box
 - NodeJS
 - RVM, Ruby 1.9.3 & Rails stack
 
-Prerequisite gem : Vagrant, librarian
+Prerequisite gem : Vagrant, Librarian
