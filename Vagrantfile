@@ -109,7 +109,8 @@ Vagrant::Config.run do |config|
 							{ 'name' => 'mongo' },
 							{ 'name' => 'mongoid' },
 							{ 'name' => 'rails' },
-							{ 'name' => 'therubyracer' }]
+							{ 'name' => 'therubyracer' },
+							{ 'name' => 'unicorn' } ]
 				}
                              } 
                  }
