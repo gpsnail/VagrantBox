@@ -7,3 +7,5 @@ Vagrant File & Chef file for Ubuntu Box
 - RVM, Ruby 1.9.3 & Rails stack
 
 Prerequisite gem : Vagrant, Librarian
+
+I can provide an empty ubuntu box on demand
