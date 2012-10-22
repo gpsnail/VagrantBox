@@ -69,50 +69,56 @@ Vagrant::Config.run do |config|
      chef.cookbooks_path = "chef-repo/cookbooks"
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
-     chef.add_recipe "mysql"
-     chef.add_recipe "mysql::server"
-     chef.add_recipe "apache2"
-     chef.add_recipe "php"
-     chef.add_recipe "php::package"
-     chef.add_recipe "php::module_mysql"
-     chef.add_recipe "php::module_gd"
-     chef.add_recipe "php::module_fpdf"
-     chef.add_recipe "php::module_curl"
-     chef.add_recipe "apache2::mod_rewrite"
-     chef.add_recipe "php::module_pgsql"
-     chef.add_recipe "imagemagick"
-     chef.add_recipe "imagemagick::devel"
-     chef.add_recipe "nodejs"
+
+    chef.add_recipe "mysql"
+    chef.add_recipe "mysql::server"
+    chef.add_recipe "apache2"
+    chef.add_recipe "php"
+    chef.add_recipe "php::package"
+    chef.add_recipe "php::module_mysql"
+    chef.add_recipe "php::module_gd"
+    chef.add_recipe "php::module_fpdf"
+    chef.add_recipe "php::module_curl"
+    chef.add_recipe "apache2::mod_rewrite"
+    chef.add_recipe "php::module_pgsql"
+    chef.add_recipe "imagemagick"
+    chef.add_recipe "imagemagick::devel"
+    chef.add_recipe "nodejs"
 
 
-     chef.add_recipe "apache2::mod_php5"
-     chef.add_recipe "mongodb::10gen_repo"
-     chef.add_recipe "postgresql"
-     chef.add_recipe "postgresql::server"
-     chef.add_recipe "rvm::user"
-  #   chef.add_recipe "rvm::vagrant"
-  #   chef.add_role "web"
+    chef.add_recipe "apache2::mod_php5"
+    chef.add_recipe "mongodb::10gen_repo"
+    chef.add_recipe "postgresql"
+    chef.add_recipe "postgresql::server" 
+
+    chef.add_recipe "rvm::default"
+    chef.add_recipe "rvm::system"
+
+    chef.add_recipe "rvm::vagrant"
+    # chef.add_recipe "rvm::gem_package"
+    # chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
   #  chef.json = { 'mysql' => { 'server_root_password' => 'foo' } }
      chef.json = { 'mysql' => { 'server_root_password' => 'foo' } ,
                    'rvm' => { 
-                         'user_installs' =>  [ { 'user' => 'vagrant', 
-                                                 'rubies' => ['1.9.3'], 
-                                                 'default_ruby' => '1.9.3'
-						 
-                                             } ] ,
-			  'user_gems' => {
-				'ruby-1.9.3-p194' => [ { 'name' => 'mysql' },
+   			 'rubies' => ['ruby-1.9.3-p286'],
+                         #'user_installs' =>  [ { 'user' => 'vagrant', 
+                         #                        'rubies' => ['ruby-1.9.3-p286'], 
+                         #                        'default_ruby' => 'ruby-1.9.3-p286'
+                         #                    } ] ,
+			 'gems' => {
+				'ruby-1.9.3-p286' => [  { 'name' => 'mysql' },
 							{ 'name' => 'mysql2' },
 							{ 'name' => 'sqlite3' },
+							{ 'name' => 'chef' },
 							{ 'name' => 'pg' },
 							{ 'name' => 'mongo' },
 							{ 'name' => 'mongoid' },
 							{ 'name' => 'rails' },
 							{ 'name' => 'therubyracer' },
-							{ 'name' => 'unicorn' } ]
-				}
+							{ 'name' => 'unicorn' } 
+				] }
                              } 
                  }
   end
