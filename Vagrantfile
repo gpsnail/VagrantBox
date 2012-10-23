@@ -66,7 +66,9 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
+     # chef.log_level = :debug
      chef.cookbooks_path = "chef-repo/cookbooks"
+     
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
 
@@ -91,7 +93,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "postgresql"
     chef.add_recipe "postgresql::server" 
 
-    chef.add_recipe "rvm::default"
+    # chef.add_recipe "rvm::default"
     chef.add_recipe "rvm::system"
 
     chef.add_recipe "rvm::vagrant"
@@ -103,6 +105,7 @@ Vagrant::Config.run do |config|
      chef.json = { 'mysql' => { 'server_root_password' => 'foo' } ,
                    'rvm' => { 
    			 'rubies' => ['ruby-1.9.3-p286'],
+			 # 'group_users' => ['vagrant'],
                          #'user_installs' =>  [ { 'user' => 'vagrant', 
                          #                        'rubies' => ['ruby-1.9.3-p286'], 
                          #                        'default_ruby' => 'ruby-1.9.3-p286'
@@ -111,7 +114,6 @@ Vagrant::Config.run do |config|
 				'ruby-1.9.3-p286' => [  { 'name' => 'mysql' },
 							{ 'name' => 'mysql2' },
 							{ 'name' => 'sqlite3' },
-							{ 'name' => 'chef' },
 							{ 'name' => 'pg' },
 							{ 'name' => 'mongo' },
 							{ 'name' => 'mongoid' },
