@@ -22,6 +22,7 @@ Then you have to install a box as empty as possible :
 
 Launching the box :
 - vagrant up 
+
 Will install the box and provision using the chef repo
 
 I can provide an empty ubuntu box on demand
