@@ -76,6 +76,7 @@ Vagrant::Config.run do |config|
 
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
+
     chef.add_recipe "apache2"
     chef.add_recipe "php"
     chef.add_recipe "php::package"
@@ -103,8 +104,7 @@ Vagrant::Config.run do |config|
     # chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
-  #  chef.json = { 'mysql' => { 'server_root_password' => 'foo' } }
-     chef.json = { 'mysql' => { 'server_root_password' => 'foo' } ,
+     chef.json = { 'mysql' => { 'server_root_password' => 'foo' , 'allow_remote_root' => true } ,
                    'rvm' => { 
    			 'rubies' => ['ruby-1.9.3-p286'],
 			 # 'group_users' => ['vagrant'],
@@ -125,6 +125,7 @@ Vagrant::Config.run do |config|
 				] }
                              } 
                  }
+#	chef.json = { 'mysql' => { 'server_root_password' => 'foo', 'allow_remote_root' => true } }
   end
 
   # Enable provisioning with chef server, specifying the chef server URL,
