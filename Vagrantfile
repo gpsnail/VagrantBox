@@ -73,7 +73,9 @@ Vagrant::Config.run do |config|
      
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
+
     chef.add_recipe "apt"
+
 
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
@@ -124,7 +126,9 @@ Vagrant::Config.run do |config|
 							{ 'name' => 'therubyracer' },
 							{ 'name' => 'unicorn' } 
 				] }
+
                              } 
+
                  }
 #	chef.json = { 'mysql' => { 'server_root_password' => 'foo', 'allow_remote_root' => true } }
   end
