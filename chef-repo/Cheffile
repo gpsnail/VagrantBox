@@ -18,6 +18,7 @@ cookbook 'imagemagick'
 
 
 cookbook 'rvm',
+#    :git => 'https://github.com/fnichol/chef-rvm.git'
    :git => 'https://github.com/gpsnail/chef-rvm.git'
 
 cookbook 'nodejs',
@@ -26,3 +27,4 @@ cookbook 'nodejs',
 # cookbook 'postgresql',
 #   :git => 'https://github.com/findsyou/cookbooks',
 #   :ref => 'postgresql-improvements'
+

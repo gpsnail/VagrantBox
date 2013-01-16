@@ -15,13 +15,13 @@ Vagrant::Config.run do |config|
   # config.vm.box_url = "http://domain.com/path/to/above.box"
 
   # Boot with a GUI so you can see the screen. (Default is headless)
-  # config.vm.boot_mode = :gui
+  # config.vm.boot_mode = :gui
 
   # Assign this VM to a host-only network IP, allowing you to access it
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
-  # config.vm.network :hostonly, "192.168.33.10"
+  config.vm.network :hostonly, "192.168.1.2", :netmask => "255.255.255.0"
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
@@ -38,7 +38,7 @@ Vagrant::Config.run do |config|
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
   
-  config.vm.share_folder "v-www", "/var/www", "www"
+  config.vm.share_folder "v-www", "/var/www", "www", :nfs => true
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -68,7 +68,7 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-     # chef.log_level = :debug
+  #   chef.log_level = :debug
      chef.cookbooks_path = "chef-repo/cookbooks"
      
   #   chef.roles_path = "../my-recipes/roles"
@@ -76,11 +76,11 @@ Vagrant::Config.run do |config|
 
     chef.add_recipe "apt"
 
-
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
 
     chef.add_recipe "apache2"
+  
     chef.add_recipe "php"
     chef.add_recipe "php::package"
     chef.add_recipe "php::module_mysql"
@@ -92,6 +92,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "imagemagick"
     chef.add_recipe "imagemagick::devel"
     chef.add_recipe "nodejs"
+    chef.add_recipe "nodejs::npm"
 
 
     chef.add_recipe "apache2::mod_php5"
@@ -99,39 +100,55 @@ Vagrant::Config.run do |config|
     chef.add_recipe "postgresql"
     chef.add_recipe "postgresql::server" 
 
-    # chef.add_recipe "rvm::default"
+    # # chef.add_recipe "rvm::default"
     chef.add_recipe "rvm::system"
 
     chef.add_recipe "rvm::vagrant"
-    # chef.add_recipe "rvm::gem_package"
+    # # chef.add_recipe "rvm::gem_package"
     # chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
-     chef.json = { 'mysql' => { 'server_root_password' => 'foo' , 'allow_remote_root' => true } ,
-                   'rvm' => { 
-   			 'rubies' => ['ruby-1.9.3-p286'],
-			 # 'group_users' => ['vagrant'],
+
+
+     chef.json = {  'apache' => { 'default_site_enabled' => true },
+
+                    'mysql' => { 'server_root_password' => 'foo' ,
+                                  'server_debian_password' => 'foo',
+                                  'server_repl_password' => 'foo', 
+                                  'allow_remote_root' => true
+                                },
+                    "postgresql" => {
+                                  "password" => {
+                                        "postgres" => "foo"
+                                  } },   
+                    'rvm' => { 
+   		 	 'rubies' => ['ruby-1.9.3-p327'],
+			  'gems' => {
+      			 	'ruby-1.9.3-p327' => [  { 'name' => 'mysql' },
+			 				{ 'name' => 'mysql2' },
+			 				{ 'name' => 'sqlite3' },
+			 				{ 'name' => 'pg' },
+			 				{ 'name' => 'mongo' },
+			 				{ 'name' => 'mongoid' },
+			 				{ 'name' => 'rails' },
+			 				{ 'name' => 'therubyracer' },
+			 				{ 'name' => 'unicorn' } 
+			 	] }
+                            }
+
+
+                 }
+
+  end
+
+
+=begin
+         #, 'group_users' => ['vagrant'],
                          #'user_installs' =>  [ { 'user' => 'vagrant', 
                          #                        'rubies' => ['ruby-1.9.3-p286'], 
                          #                        'default_ruby' => 'ruby-1.9.3-p286'
                          #                    } ] ,
-			 'gems' => {
-				'ruby-1.9.3-p286' => [  { 'name' => 'mysql' },
-							{ 'name' => 'mysql2' },
-							{ 'name' => 'sqlite3' },
-							{ 'name' => 'pg' },
-							{ 'name' => 'mongo' },
-							{ 'name' => 'mongoid' },
-							{ 'name' => 'rails' },
-							{ 'name' => 'therubyracer' },
-							{ 'name' => 'unicorn' } 
-				] }
-
-                             } 
-
-                 }
-#	chef.json = { 'mysql' => { 'server_root_password' => 'foo', 'allow_remote_root' => true } }
-  end
+=end
 
   # Enable provisioning with chef server, specifying the chef server URL,
   # and the path to the validation key (relative to this Vagrantfile).
