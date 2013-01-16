@@ -122,22 +122,20 @@ Vagrant::Config.run do |config|
                                         "postgres" => "foo"
                                   } },   
                     'rvm' => { 
-   		 	 'rubies' => ['ruby-1.9.3-p327'],
-			  'gems' => {
-      			 	'ruby-1.9.3-p327' => [  { 'name' => 'mysql' },
-			 				{ 'name' => 'mysql2' },
-			 				{ 'name' => 'sqlite3' },
-			 				{ 'name' => 'pg' },
-			 				{ 'name' => 'mongo' },
-			 				{ 'name' => 'mongoid' },
-			 				{ 'name' => 'rails' },
-			 				{ 'name' => 'therubyracer' },
-			 				{ 'name' => 'unicorn' } 
-			 	] }
-                            }
-
-
-                 }
+   		 	                         'rubies' => ['ruby-1.9.3-p327'],
+			                           'gems' => {
+      			 	                         'ruby-1.9.3-p327' => [  { 'name' => 'mysql' },
+                              			 				{ 'name' => 'mysql2' },
+                              			 				{ 'name' => 'sqlite3' },
+                              			 				{ 'name' => 'pg' },
+                              			 				{ 'name' => 'mongo' },
+                              			 				{ 'name' => 'mongoid' },
+                              			 				{ 'name' => 'rails' },
+                              			 				{ 'name' => 'therubyracer' },
+                              			 				{ 'name' => 'unicorn' } 
+                                			 	] }
+                            },
+                  }
 
   end
 
