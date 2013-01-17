@@ -68,7 +68,7 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-  #   chef.log_level = :debug
+     chef.log_level = :debug
      chef.cookbooks_path = "chef-repo/cookbooks"
      
   #   chef.roles_path = "../my-recipes/roles"
@@ -105,10 +105,12 @@ Vagrant::Config.run do |config|
 
     chef.add_recipe "rvm::vagrant"
     # # chef.add_recipe "rvm::gem_package"
+
+    chef.add_recipe "composer"
+    chef.add_recipe "composer::symfony"
     # chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
-
 
      chef.json = {  'apache' => { 'default_site_enabled' => true },
 
