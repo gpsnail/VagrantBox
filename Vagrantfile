@@ -74,7 +74,7 @@ Vagrant::Config.run do |config|
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
     chef.add_recipe "apt"
-=begin
+
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
 
@@ -105,7 +105,7 @@ Vagrant::Config.run do |config|
 
     chef.add_recipe "rvm::vagrant"
     # # chef.add_recipe "rvm::gem_package"
-=end
+
     chef.add_recipe "composer"
     chef.add_recipe "composer::symfony"
 
