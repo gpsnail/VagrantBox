@@ -5,6 +5,8 @@ Vagrant File & Chef file for Ubuntu Box
 - Imagemagick
 - NodeJS
 - RVM, Ruby 1.9.3 & Rails stack
+- Composer installation
+- Symfony install thru Composer
 
 Prerequisite gem : Vagrant, Librarian
 
