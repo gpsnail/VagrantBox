@@ -28,7 +28,7 @@ cookbook 'nodejs',
    :git => 'https://github.com/mdxp/nodejs-cookbook.git'
 
 cookbook 'composer',
-	:git => 'https://github.com/gpsnail/chef-composer.git'
+   :git => 'https://github.com/gpsnail/chef-composer.git'
 
 
 # cookbook 'postgresql',

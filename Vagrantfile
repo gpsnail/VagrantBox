@@ -68,14 +68,13 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-     chef.log_level = :debug
+  #   chef.log_level = :debug
      chef.cookbooks_path = "chef-repo/cookbooks"
      
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
-
     chef.add_recipe "apt"
-
+=begin
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
 
@@ -91,11 +90,12 @@ Vagrant::Config.run do |config|
     chef.add_recipe "php::module_pgsql"
     chef.add_recipe "imagemagick"
     chef.add_recipe "imagemagick::devel"
+
     chef.add_recipe "nodejs"
     chef.add_recipe "nodejs::npm"
 
-
     chef.add_recipe "apache2::mod_php5"
+    
     chef.add_recipe "mongodb::10gen_repo"
     chef.add_recipe "postgresql"
     chef.add_recipe "postgresql::server" 
@@ -105,9 +105,10 @@ Vagrant::Config.run do |config|
 
     chef.add_recipe "rvm::vagrant"
     # # chef.add_recipe "rvm::gem_package"
-
+=end
     chef.add_recipe "composer"
     chef.add_recipe "composer::symfony"
+
     # chef.add_role "web"
   #
   #   # You may also specify custom JSON attributes:
@@ -117,7 +118,8 @@ Vagrant::Config.run do |config|
                     'mysql' => { 'server_root_password' => 'foo' ,
                                   'server_debian_password' => 'foo',
                                   'server_repl_password' => 'foo', 
-                                  'allow_remote_root' => true
+                                  'allow_remote_root' => true, 
+                                  'bind_address' => "0.0.0.0"
                                 },
                     "postgresql" => {
                                   "password" => {
