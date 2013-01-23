@@ -69,7 +69,7 @@ Vagrant::Config.run do |config|
   #
   config.vm.provision :chef_solo do |chef|
   #   chef.log_level = :debug
-     chef.cookbooks_path = "chef-repo/cookbooks"
+    chef.cookbooks_path = "chef-repo/cookbooks"
      
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
@@ -116,7 +116,7 @@ Vagrant::Config.run do |config|
      chef.json = {  'apache' => { 'default_site_enabled' => true },
 
                     'mysql' => { 'server_root_password' => 'foo' ,
-                                  'server_debian_password' => 'foo',
+                                 'server_debian_password' => 'foo',
                                   'server_repl_password' => 'foo', 
                                   'allow_remote_root' => true, 
                                   'bind_address' => "0.0.0.0"
