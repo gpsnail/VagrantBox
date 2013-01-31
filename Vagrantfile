@@ -139,6 +139,8 @@ Vagrant::Config.run do |config|
                               			 				{ 'name' => 'unicorn' } 
                                 			 	] }
                             },
+                    'nodejs' => { 'version' => '0.8.18',
+                                  'npm' => '1.2.4' }
                   }
 
   end
