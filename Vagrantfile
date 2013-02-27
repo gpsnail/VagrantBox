@@ -68,13 +68,12 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-  #   chef.log_level = :debug
+    chef.log_level = :debug
     chef.cookbooks_path = "chef-repo/cookbooks"
      
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
     chef.add_recipe "apt"
-
     chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
 
@@ -100,11 +99,8 @@ Vagrant::Config.run do |config|
     chef.add_recipe "postgresql"
     chef.add_recipe "postgresql::server" 
 
-    # # chef.add_recipe "rvm::default"
     chef.add_recipe "rvm::system"
-
     chef.add_recipe "rvm::vagrant"
-    # # chef.add_recipe "rvm::gem_package"
 
     chef.add_recipe "composer"
     chef.add_recipe "composer::symfony"
@@ -126,9 +122,9 @@ Vagrant::Config.run do |config|
                                         "postgres" => "foo"
                                   } },   
                     'rvm' => { 
-   		 	                         'rubies' => ['ruby-1.9.3-p327'],
-			                           'gems' => {
-      			 	                         'ruby-1.9.3-p327' => [  { 'name' => 'mysql' },
+   		 	                         'rubies' => ['ruby-1.9.3-p392', 'ruby-2.0.0-p0'],
+                                 'gems' => {
+      			 	                         'ruby-1.9.3-p392' => [  { 'name' => 'mysql' },
                               			 				{ 'name' => 'mysql2' },
                               			 				{ 'name' => 'sqlite3' },
                               			 				{ 'name' => 'pg' },
@@ -137,7 +133,17 @@ Vagrant::Config.run do |config|
                               			 				{ 'name' => 'rails' },
                               			 				{ 'name' => 'therubyracer' },
                               			 				{ 'name' => 'unicorn' } 
-                                			 	] }
+                                			 	],
+                                        'ruby-2.0.0-p0' => [  { 'name' => 'mysql' },
+                                            { 'name' => 'mysql2' },
+                                            { 'name' => 'sqlite3' },
+                                            { 'name' => 'pg' },
+                                            { 'name' => 'mongo' },
+                                            { 'name' => 'mongoid' },
+                                            { 'name' => 'rails' },
+                                            { 'name' => 'therubyracer' },
+                                            { 'name' => 'unicorn' } 
+                                        ] }
                             },
                     'nodejs' => { 'version' => '0.8.18',
                                   'npm' => '1.2.4' }
