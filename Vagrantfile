@@ -124,7 +124,8 @@ Vagrant::Config.run do |config|
                                         "postgres" => "foo"
                                   } },   
                     'rvm' => { 
-   		 	                         'rubies' => ['ruby-1.9.3-p392', 'ruby-2.0.0-p0'],
+   		 	                         'default_ruby' => 'ruby-1.9.3-p392',
+                                 'rubies' => ['ruby-1.9.3-p392', 'ruby-2.0.0-p0'],
                                  'gems' => {
       			 	                         'ruby-1.9.3-p392' => [  { 'name' => 'mysql' },
                               			 				{ 'name' => 'mysql2' },
