@@ -1,5 +1,7 @@
+#!/usr/bin/env ruby
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+#^syntax detection
 
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. The most common configuration
@@ -68,7 +70,7 @@ Vagrant::Config.run do |config|
   # some recipes and/or roles.
   #
   config.vm.provision :chef_solo do |chef|
-    chef.log_level = :debug
+  #  chef.log_level = :debug
     chef.cookbooks_path = "chef-repo/cookbooks"
      
   #   chef.roles_path = "../my-recipes/roles"
@@ -145,8 +147,8 @@ Vagrant::Config.run do |config|
                                             { 'name' => 'unicorn' } 
                                         ] }
                             },
-                    'nodejs' => { 'version' => '0.8.18',
-                                  'npm' => '1.2.4' }
+                    'nodejs' => { 'version' => '0.9.10',
+                                  'npm' => '1.2.12' }
                   }
 
   end

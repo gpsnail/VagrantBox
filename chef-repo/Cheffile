@@ -19,7 +19,7 @@ cookbook 'imagemagick'
 
 cookbook 'rvm',
    #:git => 'https://github.com/fnichol/chef-rvm.git'
-   :git => 'https://github.com/gpsnail/chef-rvm.git'
+   :git => 'https://github.com/gpsnail/chef-rvm.git', :ref => 'vagrantgroup'
 
 cookbook 'nodejs',
    :git => 'https://github.com/mdxp/nodejs-cookbook.git'
