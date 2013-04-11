@@ -3,14 +3,17 @@
 # vi: set ft=ruby :
 #^syntax detection
 
-Vagrant::Config.run do |config|
+Vagrant.configure("2") do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "myminibox"
-  config.vm.customize ["modifyvm", :id, "--memory", 512]
+
+  config.vm.provider :virtualbox do |vb|
+    vb.customize ["modifyvm", :id, "--memory", 512]
+  end
 
   # The url from where the 'config.vm.box' box will be fetched if it
   # doesn't already exist on the user's system.
@@ -23,7 +26,7 @@ Vagrant::Config.run do |config|
   # via the IP. Host-only networks can talk to the host machine as well as
   # any other machines on the same network, but cannot be accessed (through this
   # network interface) by any external networks.
-  config.vm.network :hostonly, "192.168.1.2", :netmask => "255.255.255.0"
+  config.vm.network  :private_network, ip: "192.168.1.2"  # , :netmask => "255.255.255.0"
 
   # Assign this VM to a bridged network, allowing you to connect directly to a
   # network using the host's network device. This makes the VM appear as another
@@ -32,15 +35,15 @@ Vagrant::Config.run do |config|
 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
-  config.vm.forward_port 80, 8888
-  config.vm.forward_port 3000, 3333
-  config.vm.forward_port 3306, 3366
+  config.vm.network :forwarded_port, guest: 80, host: 8888
+  config.vm.network :forwarded_port, guest: 3000, host: 3333
+  config.vm.network :forwarded_port, guest: 3306, host: 3366
 
   # Share an additional folder to the guest VM. The first argument is
   # an identifier, the second is the path on the guest to mount the
   # folder, and the third is the path on the host to the actual folder.
   
-  config.vm.share_folder "v-www", "/var/www", "www", :nfs => true
+  config.vm.synced_folder "www", "/var/www" , :nfs => true
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
@@ -76,7 +79,9 @@ Vagrant::Config.run do |config|
   #   chef.roles_path = "../my-recipes/roles"
   #   chef.data_bags_path = "../my-recipes/data_bags"
     chef.add_recipe "apt"
-    chef.add_recipe "mysql"
+
+  
+  chef.add_recipe "mysql"
     chef.add_recipe "mysql::server"
 
     chef.add_recipe "apache2"
@@ -101,11 +106,13 @@ Vagrant::Config.run do |config|
     chef.add_recipe "postgresql"
     chef.add_recipe "postgresql::server" 
 
+    chef.add_recipe "composer"
+    chef.add_recipe "composer::symfony"
+
+
     chef.add_recipe "rvm::system"
     chef.add_recipe "rvm::vagrant"
 
-    chef.add_recipe "composer"
-    chef.add_recipe "composer::symfony"
 
     # chef.add_role "web"
   #
@@ -126,6 +133,7 @@ Vagrant::Config.run do |config|
                     'rvm' => { 
    		 	                         'default_ruby' => 'ruby-1.9.3-p392',
                                  'rubies' => ['ruby-1.9.3-p392', 'ruby-2.0.0-p0'],
+
                                  'gems' => {
       			 	                         'ruby-1.9.3-p392' => [  { 'name' => 'mysql' },
                               			 				{ 'name' => 'mysql2' },
@@ -147,9 +155,10 @@ Vagrant::Config.run do |config|
                                             { 'name' => 'therubyracer' },
                                             { 'name' => 'unicorn' } 
                                         ] }
-                            },
-                    'nodejs' => { 'version' => '0.9.10',
-                                  'npm' => '1.2.12' }
+
+                            }, 
+                    'nodejs' => { 'version' => '0.10.3',
+                                  'npm' => '1.2.18' }
                   }
 
   end
